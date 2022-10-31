@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "070f66a8-476f-4b74-a9e5-3fd07f7b34ed",
+		"name": "REST-PracticeTask",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7726535"
+	},
+	"item": [
+		{
+			"name": "GetCategories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7245/api/categories",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7245",
+					"path": [
+						"api",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProducts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7245/api/products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7245",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProductsByCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7245/api/products?categoryID=DFEF3A8C-A6E2-4C54-89AA-CDCDEED7EC09",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7245",
+					"path": [
+						"api",
+						"products"
+					],
+					"query": [
+						{
+							"key": "categoryID",
+							"value": "DFEF3A8C-A6E2-4C54-89AA-CDCDEED7EC09"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProductById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7245/api/products/324f1a6a-b551-4a5a-a852-09fae0dbbc2a",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7245",
+					"path": [
+						"api",
+						"products",
+						"324f1a6a-b551-4a5a-a852-09fae0dbbc2a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"LG TV\",\r\n  \"price\": 9999.45,\r\n  \"quantity\": 3,\r\n  \"imgUrl\": \"https://www.lg.com/eg_en/images/tvs/md05250703/gallery/large01.jpg\",\r\n  \"categoryId\": \"ac12210a-1419-49d6-8f4b-da20b0ddd10f\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7245/api/products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7245",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateWholeProduct",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"name\": \"Honda T360 v2\",\r\n      \"price\": 15,\r\n      \"quantity\": 7,\r\n      \"imgUrl\": \"https://en.wikipedia.org/wiki/Honda#/media/File:Honda_T360_1963_in_Honda_Collection_Hall.jpg\",\r\n      \"categoryId\": \"dfef3a8c-a6e2-4c54-89aa-cdcdeed7ec09\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7245/api/products/324f1a6a-b551-4a5a-a852-09fae0dbbc2a",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7245",
+					"path": [
+						"api",
+						"products",
+						"324f1a6a-b551-4a5a-a852-09fae0dbbc2a"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
