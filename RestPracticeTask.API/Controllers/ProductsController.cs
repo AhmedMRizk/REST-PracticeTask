@@ -44,8 +44,6 @@ namespace RestPracticeTask.API.Controllers
             return Ok(_mapper.Map<ProductDto>(product));
         }
 
-        //todo: Generic needed?
-
         [HttpPost]
         public ActionResult<ProductDto> CreateProduct(ProductForCreationDto product)
         {
