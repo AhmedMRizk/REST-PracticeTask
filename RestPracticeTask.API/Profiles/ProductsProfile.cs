@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using RestPracticeTask.API.Entities;
+using RestPracticeTask.API.Models;
 
 namespace RestPracticeTask.API.Profiles
 {
@@ -6,7 +8,11 @@ namespace RestPracticeTask.API.Profiles
     {
         public ProductsProfile()
         {
-            CreateMap<Entities.Product, Models.ProductDto>();
+            CreateMap<Product, ProductDto>();
+            CreateMap<ProductForCreationDto, Product>();
+            CreateMap<Product, ProductForUpdateDto>();
+            CreateMap<ProductForUpdateDto, Product>();
+
         }
     }
 }

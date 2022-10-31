@@ -12,7 +12,7 @@ using RestPracticeTask.API.DbContexts;
 namespace RestPracticeTask.API.Migrations
 {
     [DbContext(typeof(PracticeAppContext))]
-    [Migration("20221030200912_Initial")]
+    [Migration("20221031130637_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,8 @@ namespace RestPracticeTask.API.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -62,11 +63,13 @@ namespace RestPracticeTask.API.Migrations
 
                     b.Property<string>("ImgUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(24,4)");
@@ -75,6 +78,8 @@ namespace RestPracticeTask.API.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
 
@@ -124,6 +129,17 @@ namespace RestPracticeTask.API.Migrations
                             Price = 335m,
                             Quantity = 1
                         });
+                });
+
+            modelBuilder.Entity("RestPracticeTask.API.Entities.Product", b =>
+                {
+                    b.HasOne("RestPracticeTask.API.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

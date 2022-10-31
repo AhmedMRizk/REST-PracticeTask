@@ -1,3 +1,4 @@
+using AutoWrapper;
 using Microsoft.EntityFrameworkCore;
 using RestPracticeTask.API.DbContexts;
 using RestPracticeTask.API.Services;
@@ -17,6 +18,16 @@ namespace RestPracticeTask.API
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddCors(o => o.AddPolicy("AllowOurOrigin",
+                appBuilder =>
+                {
+                    appBuilder
+                        .WithOrigins("http://localhost:3000")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                }));
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -42,7 +53,6 @@ namespace RestPracticeTask.API
                 }
             }
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -55,15 +65,18 @@ namespace RestPracticeTask.API
                     appBuilder.Run(async context =>
                     {
                         context.Response.StatusCode = 500;
+                        context.Response.ContentType = "application/json";
                         await context.Response.WriteAsync("An unexpected fault happened. Try again later.");
                     });
                 });
             }
 
+            app.UseApiResponseAndExceptionWrapper();
+
+            app.UseCors("AllowOurOrigin");
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
